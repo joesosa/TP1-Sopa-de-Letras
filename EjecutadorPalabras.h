@@ -7,6 +7,9 @@ class EjecutadorPalabras{
     private:
         Palabra lista [];
         int contadorPalabras;
+        const int nombreDireccion[]={3,6,2,8,4,7,1,5};
+   		const int sumaF[]={-1,-1,0,1,1,1,0,-1};
+    	const int sumaC[]={0,-1,-1,-1,0,1,1,1};   
 
     public:
         EjecutadorPalabras(char *);
