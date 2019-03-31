@@ -1,25 +1,27 @@
-#ifndef MATRIZ_
-#define MATRIZ_
+#ifndef MATRIZ_G02
+#define MATRIZ_G02
+#define RELLENO '_'
 #include<iostream>
 using namespace std;
 class Matriz {
    private:
-       char * * m;
-	   int filas;
-	   int columnas;
-	   void _init(int,int); // pide memoria y rellana de '_'
-	   void liberarMemoria();
+      int filas;
+	  int columnas;
+	  char **m;
+	  
+	  void _init(int,int,char);
+	  void _liberar();
    public:
-	   Matriz();
-	   Matriz(int,int);
-	   Matriz(const Matriz &); // Constructor por copia
-	   ~Matriz();
-	   void asignar(const Matriz &);
-	   int getFilas();
-	   int getColumnas();
-	   int esPosicionValida(int,int);
-	   void setValor(int,int,char); // fila columna char
-       char getValor(int,int);
-	   void imprimir( ostream & );
+      Matriz(); // Constructor por omision
+	  Matriz(int,int); // Constructor con parametros
+	  Matriz(const Matriz &); // Constructor de copia
+	  ~Matriz();
+	  void asignar(const Matriz &);
+	  int esPosicionValida(int,int);
+	  int posicionVacia(int,int); 
+	  void quitarValor(int,int); 
+      void setValor(int,int,char);
+	  char getValor(int,int);
+	  void imprimir( ostream & );
 };
 #endif
