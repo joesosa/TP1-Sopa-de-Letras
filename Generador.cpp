@@ -29,9 +29,9 @@ void Generador:: ponerPalabra(int dir, int posF, int posC, char * palabra, int i
 }
 
 void Generador:: ponerPalabra(char * palabra){
-    int dir= Math.random()*8;
-    int posF = Math.random()*f;
-    int posC = Math,random()*c;
+    int dir = 1 + rand() % 8;
+    int posF = rand() % f;
+    int posC = rand() % c;
     int i = 0;
     ponerPalabra(dir, posF, posC, char * palabra, i);
 
