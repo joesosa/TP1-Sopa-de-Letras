@@ -12,35 +12,51 @@ Generador::Generador(int f, int c, int n){
 }
 
 
-void Generador::ponerPalabra(int dir, int posF, int posC, Palabra p, int i){
-    if(m.posicionVacia(posF, posC)){
-        if(i< lista[cuantasPalabras].getLength()){
-            m.setValor(posF, posC, lista[cuantasPalabras].charAt(i));
-			m.imprimir(cout); 
-            ponerPalabra(dir, posF+sumaF[dir], posC+sumaC[dir], lista[cuantasPalabras], i++);
-        }
-    }
-    else{
-            if(i>0 && i < lista[cuantasPalabras].getLength()-1){
-                m.quitarValor(posF, posC);
-                ponerPalabra(dir, posF-sumaF[dir], posC-sumaC[dir], lista[cuantasPalabras], i--);
-            }
-
-    }
-}
 
 void Generador::guardoPalabra(char * ptr, int n){
     Palabra * pl = new Palabra(ptr);
         lista[n] = *pl;   
 }
 
-void Generador::ponerPalabra(Palabra palabra){
-    int dir = palabra.getPosicion();
+void Generador::posicionPalabra(Palabra p){
+    int dir = p.getPosicion();
     int posF = rand() % f;
     int posC = rand() % c;
-    int i = 0;
-    ponerPalabra(dir, posF, posC, palabra, i);
+    ponerPalabra(dir, posF, posC, p);
+}
 
+void Generador::ponerPalabra (int dir, int posF, int posC, Palabra p){
+    int i = 0;
+    if(verificar(i, posF, posC, dir, p)){
+        ponerLetras(i, posF, posC, dir, p);
+    }
+    else{
+        dir++; 
+        if(dir>= 8){
+            dir = 0; 
+        }
+        ponerPalabra(dir, posF, posC, p);
+    }
+}
+
+int Generador:: verificar(int i, int posF, int posC, int dir, Palabra p){
+    int posible = 1; 
+    if(i < p.getLength()){
+        if(!m.posicionVacia(posF, posC) && m.getValor(posF, posC) != p.charAt(i)){
+            posible = 0; 
+        }
+        else{
+            verificar(i++, posF + sumaF[dir], posC + sumaC[dir], dir, p);
+        }
+    }
+    return posible; 
+}
+
+void Generador:: ponerLetras(int i, int posF, int posC, int dir, Palabra p){
+    if(i<p.getLength()){
+        m.setValor(posF, posC, p.charAt(i)); 
+        ponerLetras(i++, posF + sumaF[dir], posC + sumaC [dir], dir, p); 
+    }
 }
 
 void Generador::rellenaSopa(){
