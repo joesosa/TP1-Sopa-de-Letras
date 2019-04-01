@@ -15,6 +15,7 @@ class Generador
         void ponerPalabra(int, int, int, Palabra); 
         int verificar(int, int, int, int, Palabra); 
         void ponerLetras(int, int, int, int, Palabra);
+	char getValor(int,int);
 
     private:
 		int f; 
