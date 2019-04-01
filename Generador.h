@@ -9,8 +9,10 @@ class Generador
         Generador(int f, int c);
 
         void ponerPalabra(int, int, int, Palabra, int);
-        void ponerPalabra(char*);
+        void ponerPalabra(Palabra);
         void guardoPalabra(char*,int);
+        void rellenaSopa();
+        char letraAleatoria(int);
 
     private:
 		int f; 
