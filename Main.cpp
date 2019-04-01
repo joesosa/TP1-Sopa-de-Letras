@@ -9,11 +9,11 @@ using namespace std;
 int main(int argc, char * * argv){
    int filas,columnas,cantPalabras;
    
-   if(argc > 3){ 
-        ifstream entrada(argv[0]);
-	     filas = atoi(argv[1]);
-	     columnas = atoi(argv[2]);
-        ofstream salida(argv[3]);
+   if(argc > 4){ 
+        ifstream entrada(argv[1]);
+	     filas = atoi(argv[2]);
+	     columnas = atoi(argv[3]);
+        ofstream salida(argv[4]);
         char ** palabra;
         entrada>>cantPalabras;
         palabra = new char * [cantPalabras];
@@ -32,7 +32,7 @@ int main(int argc, char * * argv){
          }
          
    } 
-   else if(argc == 3){
+   else if(argc == 4){
         ifstream entrada(argv[0]);
 	     filas = atoi(argv[1]);
 	     columnas = atoi(argv[2]);
