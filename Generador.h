@@ -8,11 +8,13 @@ class Generador
     public:
         Generador(int, int, int);
 
-        void ponerPalabra(int, int, int, Palabra, int);
-        void ponerPalabra(Palabra);
         void guardoPalabra(char*,int);
         void rellenaSopa();
         char letraAleatoria(int);
+        void posicionPalabra(Palabra);
+        void ponerPalabra(int, int, int, Palabra); 
+        int verificar(int, int, int, int, Palabra); 
+        void ponerLetras(int, int, int, int, Palabra);
 
     private:
 		int f; 
@@ -25,3 +27,4 @@ class Generador
 };
 
 #endif // GENERADOR_H
+
