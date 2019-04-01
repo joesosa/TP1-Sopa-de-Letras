@@ -25,6 +25,14 @@ void Generador::posicionPalabra(Palabra p){
     ponerPalabra(dir, posF, posC, p);
 }
 
+char Generador::getValor(int fila,int columna){
+   char valor = '\0';
+   if(m.esPosicionValida(fila,columna)){
+	   valor = m.getValor(f,c);
+   }
+   return valor;   
+}
+
 void Generador::ponerPalabra (int dir, int posF, int posC, Palabra p){
     int i = 0;
     if(verificar(i, posF, posC, dir, p)){
