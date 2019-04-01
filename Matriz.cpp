@@ -1,5 +1,6 @@
 #include "Matriz.h"
 #include<iostream>
+
 using namespace std;
 
 void Matriz::_init(int filas,int columnas, char relleno){
@@ -37,13 +38,6 @@ Matriz::Matriz(int filas, int columnas){
   _init(filas,columnas,RELLENO);
 }
 
-/**
-int c =0;
-while( c < columnas){
-	m[f][c]= otra.m[f][c];
-	++c;
-}
-**/
 
 Matriz::Matriz(const Matriz & otra){
    _init(otra.filas,otra.columnas,RELLENO);
@@ -104,4 +98,76 @@ void Matriz::imprimir( ostream & salida){
 	 }		
 	 salida << endl;
    }	      
+}
+
+void Matriz::rellenoSopa(){
+   int n = 0;  
+   for(int f=0; f< filas; ++f){
+	   for(int c=0; c<columnas; ++c){
+			n = 1 + rand() % 26;
+         m[f][c] = letraAleatoria(n);
+      }		
+   }	  
+}
+
+char Matriz::letraAleatoria(int n){
+    char devuelvo = '\0';
+    switch (n)
+    {
+        case 1: devuelvo = 'a';
+            break;
+        case 2: devuelvo = 'b';
+            break;
+        case 3: devuelvo = 'c';
+            break;
+        case 4: devuelvo = 'd';
+            break;
+        case 5: devuelvo = 'e';
+            break;
+        case 6: devuelvo = 'f';
+            break;
+        case 7: devuelvo = 'g';
+            break;
+        case 8: devuelvo = 'h';
+            break;
+        case 9: devuelvo = 'i';
+            break;
+        case 10: devuelvo = 'j';
+            break;
+        case 11: devuelvo = 'k';
+            break;
+        case 12: devuelvo = 'l';
+            break;
+        case 13: devuelvo = 'm';
+            break;
+        case 14: devuelvo = 'n';
+            break;
+        case 15: devuelvo = 'o';
+            break;
+        case 16: devuelvo = 'p';
+            break;
+        case 17: devuelvo = 'q';
+            break;
+        case 18: devuelvo = 'r';
+            break;
+        case 19: devuelvo = 's';
+            break;
+        case 20: devuelvo = 't';
+            break;
+        case 21: devuelvo = 'u';
+            break;
+        case 22: devuelvo = 'v';
+            break;
+        case 23: devuelvo = 'w';
+            break;
+        case 24: devuelvo = 'x';
+            break;
+        case 25: devuelvo = 'y';
+            break;
+        case 26: devuelvo = 'z';
+            break;
+        default:
+            break;
+    }
+    return devuelvo;
 }
