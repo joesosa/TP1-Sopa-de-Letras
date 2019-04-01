@@ -1,6 +1,7 @@
 #ifndef MATRIZ_G02
 #define MATRIZ_G02
 #define RELLENO '_'
+#include <stdlib.h>
 #include<iostream>
 using namespace std;
 class Matriz {
@@ -23,5 +24,7 @@ class Matriz {
       void setValor(int,int,char);
 	  char getValor(int,int);
 	  void imprimir( ostream & );
+	  void rellenoSopa();
+	  char letraAleatoria(int);
 };
 #endif
