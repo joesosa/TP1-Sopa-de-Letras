@@ -1,7 +1,6 @@
 #include<fstream>
 #include<iostream>
 #include "Generador.h"
-#define _MAX_BUFFER_SIZE 30
 using namespace std;
 // PARA PROBAR ESTE PROGRAMA
 // Ejecute en consola
@@ -10,25 +9,53 @@ using namespace std;
 int main(int argc, char * * argv){
    int filas,columnas,cantPalabras;
    
-   if(argc >= 3){ 
+   if(argc > 3){ 
         ifstream entrada(argv[0]);
-	      filas = atoi(argv[1]);
-	      columnas = atoi(argv[2]);
+	     filas = atoi(argv[1]);
+	     columnas = atoi(argv[2]);
         ofstream salida(argv[3]);
         char ** palabra;
         entrada>>cantPalabras;
         palabra = new char * [cantPalabras];
-        Generador pal(filas,columnas);
+        Generador pal(filas,columnas,cantPalabras);
         for(int i =0;i<cantPalabras;++i){
             entrada >> palabra[i];
             pal.guardoPalabra(palabra[i],cantPalabras++);
          }
+         
+         salida << filas << "\0" << columnas << endl;
+         for(int f = 0; f < filas;++f){
+            for(int c = 0; c < columnas; ++c){
+               salida << pal.getValor(f,c)<<"\0";
+            }
+            salida<<endl;
+         }
+         
    } 
+   else if(argc == 3){
+        ifstream entrada(argv[0]);
+	     filas = atoi(argv[1]);
+	     columnas = atoi(argv[2]);
+        char ** palabra;
+        entrada>>cantPalabras;
+        palabra = new char * [cantPalabras];
+        Generador pal(filas,columnas,cantPalabras);
+        for(int i =0;i<cantPalabras;++i){
+            entrada >> palabra[i];
+            pal.guardoPalabra(palabra[i],cantPalabras++);
+         }
 
-   // f c
-   // a b c d
-   // f e t a
-
+         cout<<filas<<"\0"<<columnas<<endl;
+         for(int f = 0; f < filas;++f){
+            for(int c = 0; c < columnas; ++c){
+               cout << pal.getValor(f,c)<<"\0";
+            }
+            cout<<endl;
+         }
+   }
+   else{
+      cout<<"No se pasaron los suficientes parametros"<<endl;
+   }
 
    return 0;
 }
