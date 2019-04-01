@@ -4,10 +4,11 @@
 #include <stdlib.h>
 using namespace std;
 
-Generador::Generador(int f, int c){
+Generador::Generador(int f, int c, int n){
     this->f = f;
     this->c = c;
     Matriz m(int f, int c);
+    lista = new Palabra[n];
 }
 
 
@@ -118,5 +119,5 @@ char Generador::letraAleatoria(int n){
 
 Generador::~Generador()
 {
-    //dtor
+    delete [] lista;
 }
