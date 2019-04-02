@@ -7,24 +7,53 @@ using namespace std;
 Generador::Generador(int f, int c, int n){
     this->f = f;
     this->c = c;
+    cuantasPalabras = n;
     Matriz m(int f, int c);
     lista = new Palabra[n];
 }
 
+Generador::~Generador()
+{
+    delete [] lista;
+}
 
-
+/**
+ * @Descripcion: almacena los * a char en el vector de palabras
+ * @Param: ptr: char* palabra
+ * @Param: n:int cantida de palabras
+ */
 void Generador::guardoPalabra(char * ptr, int n){
     Palabra * pl = new Palabra(ptr);
         lista[n] = *pl;   
 }
 
+/**
+ * @Descripcion:ciclo que coloca todas las palabras del vector en la sopa
+ */
+void Generador::palabrasEnSopa(){
+    for(int i = 0; i <= cuantasPalabras;++i){
+        posicionPalabra(lista[i]);
+    }
+}
+
+/**
+ * @Descripcion: busca una posicion aleatoria en la matriz y la forma en que se va a colocar,
+ * y ademas llama al metodo encargado de llamar a los demas colocando una palabra en un posicion,
+ * de la matriz, con una direccion
+ * @Param: p: Palabra recibe una palabra
+ */
 void Generador::posicionPalabra(Palabra p){
     int dir = p.getPosicion();
     int posF = rand() % f;
     int posC = rand() % c;
     ponerPalabra(dir, posF, posC, p);
 }
-
+/**
+ * @Descripcion:Devuelve el valor de una posicion en la matriz
+ * @Param:fila:int posicion en la fila
+ * @Param:columna:int posicion en la columna
+ * @Return: el valor en la posicion
+ */
 char Generador::getValor(int fila,int columna){
    char valor = '\0';
    if(m.esPosicionValida(fila,columna)){
@@ -32,7 +61,11 @@ char Generador::getValor(int fila,int columna){
    }
    return valor;   
 }
-
+/**
+ * @Descripcion:
+ * @Param:
+ * @Return:
+ */
 void Generador::ponerPalabra (int dir, int posF, int posC, Palabra p){
     int i = 0;
     if(verificar(i, posF, posC, dir, p)){
@@ -47,6 +80,11 @@ void Generador::ponerPalabra (int dir, int posF, int posC, Palabra p){
     }
 }
 
+/**
+ * @Descripcion:
+ * @Param:
+ * @Return:
+ */
 int Generador:: verificar(int i, int posF, int posC, int dir, Palabra p){
     int posible = 1; 
     if(i < p.getLength()){
@@ -60,6 +98,11 @@ int Generador:: verificar(int i, int posF, int posC, int dir, Palabra p){
     return posible; 
 }
 
+/**
+ * @Descripcion:
+ * @Param:
+ * @Return:
+ */
 void Generador:: ponerLetras(int i, int posF, int posC, int dir, Palabra p){
     if(i<p.getLength()){
         m.setValor(posF, posC, p.charAt(i)); 
@@ -67,6 +110,9 @@ void Generador:: ponerLetras(int i, int posF, int posC, int dir, Palabra p){
     }
 }
 
+/**
+ * @Descripcion: termina de rellenar la sopa con letras aleatorias en donde no se ubiquen las palabras
+ */
 void Generador::rellenaSopa(){
     int rand = 0;
     for(int f = 0; f < this->f;++f){
@@ -79,6 +125,11 @@ void Generador::rellenaSopa(){
     }
 }
 
+/**
+ * @Descripcion:devuelve un char aleatorio atraves de un entero aleatorio
+ * @Param:n:int numero random brindado
+ * @Return:devuelve el char aleatorio
+ */
 char Generador::letraAleatoria(int n){
     char devuelvo = '\0';
     switch (n)
@@ -141,7 +192,3 @@ char Generador::letraAleatoria(int n){
     return devuelvo;
 }
 
-Generador::~Generador()
-{
-    delete [] lista;
-}
