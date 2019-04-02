@@ -75,10 +75,18 @@ char Palabra::charAt(int pos){
   return letra;  
 }
 
+/**
+ * @Descripcion: busca el aleatorio de la palabra dado en el constructor
+ * @Return: devuelve la posicion aleatoria
+ */
 int Palabra::getPosicion(){
    return posicion;
 }
 
+/**
+ * @Descripcion: crea un nuevo aleatorio para la posicion
+ * Return: devuelve el nuevo aleatorio
+ */
 int Palabra::nuevaPosicion(){
    return 1 + rand() % 8;
 }
