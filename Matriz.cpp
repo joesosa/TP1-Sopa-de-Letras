@@ -100,6 +100,9 @@ void Matriz::imprimir( ostream & salida){
    }	      
 }
 
+/**
+ * @Descripcion: termina de rellenar la sopa con letras aleatorias en donde no se ubiquen las palabras
+ */
 void Matriz::rellenoSopa(){
    int n = 0;  
    for(int f=0; f< filas; ++f){
@@ -110,6 +113,11 @@ void Matriz::rellenoSopa(){
    }	  
 }
 
+/**
+ * @Descripcion:devuelve un char aleatorio atraves de un entero aleatorio
+ * @Param:n:int numero random brindado
+ * @Return:devuelve el char aleatorio
+ */
 char Matriz::letraAleatoria(int n){
     char devuelvo = '\0';
     switch (n)
