@@ -79,14 +79,14 @@ char Palabra::charAt(int pos){
  * @Descripcion: busca el aleatorio de la palabra dado en el constructor
  * @Return: devuelve la posicion aleatoria
  */
-int Palabra::getPosicion(){
-   return posicion;
+int Palabra::getDireccion(){
+   return direccion;
 }
 
 /**
  * @Descripcion: crea un nuevo aleatorio para la posicion
  * Return: devuelve el nuevo aleatorio
  */
-int Palabra::nuevaPosicion(){
+int Palabra::nuevaDireccion(){
    return 1 + rand() % 8;
 }
