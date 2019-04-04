@@ -1,4 +1,5 @@
 #include "Matriz.h"
+#include "Palabra.h"
 #include<iostream>
 
 using namespace std;
@@ -47,23 +48,14 @@ Matriz::Matriz(const Matriz & otra){
       }		
    }	  
 }
-void Matriz::asignar(const Matriz & otra){
-	if(m){
-		_liberar();
-	}	
-	Matriz victima(otra);
-	this->filas = victima.filas;
-	this->columnas = victima.columnas;
-	this->m= victima.m;
-	victima.m = 0;
-		
-}
 
 
-Matriz::~Matriz(){ 
-  cout << "Destructor matriz "<< filas << " x "<< columnas << endl;
-  _liberar();
-}
+
+//Matriz::~Matriz(){ 
+//  cout << "Destructor matriz "<< filas << " x "<< columnas << endl;
+// _liberar();
+//}
+
 int Matriz::esPosicionValida(int fila,int columna){
    return fila >=0 && fila < filas && columna >=0 && columna < columnas;	
 }
@@ -71,6 +63,7 @@ int Matriz::esPosicionValida(int fila,int columna){
 int Matriz::posicionVacia(int fila,int columna){
    return esPosicionValida(fila, columna) && m[fila][columna] == RELLENO ;	
 }
+
 void Matriz::setValor(int fila,int columna,char valor){
    if(esPosicionValida(fila,columna)){
 	   m[fila][columna]=valor;
@@ -84,11 +77,6 @@ char Matriz::getValor(int fila,int columna){
    return valor;   
 }
 
-void Matriz::quitarValor(int fila,int columna){
-   if(esPosicionValida(fila,columna)){
-	   m[fila][columna] = RELLENO;
-   }  
-}
 
 void Matriz::imprimir( ostream & salida){
    salida << filas << " " << columnas << endl;
@@ -100,24 +88,72 @@ void Matriz::imprimir( ostream & salida){
    }	      
 }
 
-/**
- * @Descripcion: termina de rellenar la sopa con letras aleatorias en donde no se ubiquen las palabras
- */
+
+
+
+void Matriz::ponerPalabra (int dir, int posF, int posC, Palabra p){
+    if(verificar(posF, posC, dir, p)){
+        cout << "paso verificar" << endl;
+        ponerLetras(posF, posC, dir, p);
+    }
+    else{ 
+        dir++; 
+        if(dir>= 8){
+            dir = 0; 
+        }
+        cout << "dir " << dir << endl;
+        ponerPalabra(dir, posF, posC, p);
+    }
+}
+
+int Matriz:: verificar(int posF, int posC, int dir, Palabra p){
+    int posible = 1; 
+    cout << "posible " << posible << endl;
+    cout << "length " << p.getLength() << endl;
+
+    // ITERATIVO
+      //  for(int i = 0; i < p.getLength(); i++){
+      //      if(!posicionVacia(posF, posC)){
+       //         posible = 0; 
+       //     }
+      //  }
+
+      //RECURSIVO
+    //if(i < p.getLength()){
+      //  if(!posicionVacia(posF, posC)) {
+      //      posible = 0; 
+      //  }
+       // else{
+      //      verificar(i++, posF + sumaF[dir], posC + sumaC[dir], dir, p);
+        //}
+   // } 
+    cout << "posible2 " << posible << endl;
+    return posible; 
+}
+
+void Matriz:: ponerLetras(int posF, int posC, int dir, Palabra p){
+    for(int i = 0; i < p.getLength(); i++){
+        cout << "i " << i << endl;
+        cout << "length " << p.getLength() << endl; 
+        cout << "va a poner valores" << endl; 
+        setValor(posF, posC, p.charAt(i)); 
+        cout << "puso valor" << endl; 
+    }
+}
+
+
 void Matriz::rellenoSopa(){
    int n = 0;  
    for(int f=0; f< filas; ++f){
 	   for(int c=0; c<columnas; ++c){
-			n = 1 + rand() % 26;
-         m[f][c] = letraAleatoria(n);
+           if(posicionVacia(f, c)){
+               n = 1 + rand() % 26;
+              m[f][c] = letraAleatoria(n);
+           }			
       }		
    }	  
 }
 
-/**
- * @Descripcion:devuelve un char aleatorio atraves de un entero aleatorio
- * @Param:n:int numero random brindado
- * @Return:devuelve el char aleatorio
- */
 char Matriz::letraAleatoria(int n){
     char devuelvo = '\0';
     switch (n)
