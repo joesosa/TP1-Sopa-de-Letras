@@ -10,16 +10,15 @@ class Matriz {
       int filas;
 	  int columnas;
 	  char **m;
-	  const int sumaF[8]={-1,-1,0,1,1,1,0,-1};
-      const int sumaC[8]={0,-1,-1,-1,0,1,1,1};
+	  int sumaF[8]={-1,-1,0,1,1,1,0,-1};
+      int sumaC[8]={0,-1,-1,-1,0,1,1,1};
 	  
 	  void _init(int,int,char);
 	  void _liberar();
    public:
       Matriz(); // Constructor por omision
 	  Matriz(int,int); // Constructor con parametros
-	  Matriz(const Matriz &); // Constructor de copia
-	 // ~Matriz();
+	  ~Matriz();
 	  void asignar(const Matriz &);
 	  void guardoPalabra(char * );
 	  int esPosicionValida(int,int);
