@@ -7,15 +7,11 @@ class Generador
 {
     public:
         Generador(int, int, int);
-
-        void guardoPalabra(char*,int);
-        void rellenaSopa();
-        char letraAleatoria(int);
+        ~Generador();
+        void guardoPalabra(char*, int );
         void posicionPalabra(Palabra);
-        void ponerPalabra(int, int, int, Palabra); 
-        int verificar(int, int, int, int, Palabra); 
-        void ponerLetras(int, int, int, int, Palabra);
-	char getValor(int,int);
+    
+        
 
     private:
 		int f; 
@@ -23,9 +19,7 @@ class Generador
         Matriz m;
         Palabra * lista;
         int cuantasPalabras = 0;
-        const int sumaF[8]={-1,-1,0,1,1,1,0,-1};
-    	const int sumaC[8]={0,-1,-1,-1,0,1,1,1};
+        
 };
 
 #endif // GENERADOR_H
-
