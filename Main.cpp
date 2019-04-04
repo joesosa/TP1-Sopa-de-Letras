@@ -19,19 +19,19 @@ int main(int argc, char * * argv){
         palabra = new char * [cantPalabras]; //se crea un vector de punteros a char
         Generador pal(filas,columnas,cantPalabras);
         
-       // for(int i =0;i<cantPalabras;++i){ //almacena los punteros a char en el vector de palabras
-          //  entrada >> palabra[i];
-           // pal.guardoPalabra(palabra[i],i);
-         //}
+        for(int i =0;i<cantPalabras;++i){ //almacena los punteros a char en el vector de palabras
+            entrada >> palabra[i];
+            pal.guardoPalabra(palabra[i],i);
+        }
          
-         //salida << filas << "\0" << columnas << endl; //saca en el archico las filas y las columnas
+         salida << filas << "\0" << columnas << endl; //saca en el archico las filas y las columnas
         
-         for(int f = 0; f < filas;++f){
+         /*for(int f = 0; f < filas;++f){
             for(int c = 0; c < columnas; ++c){
                salida << pal.getValor(f,c)<<"\0";
             }
             salida<<endl;
-         }
+         }*/
    } 
    else if(argc == 4){
         ifstream entrada(argv[0]);
