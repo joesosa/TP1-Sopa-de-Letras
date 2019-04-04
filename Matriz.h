@@ -3,12 +3,15 @@
 #define RELLENO '_'
 #include <stdlib.h>
 #include<iostream>
+#include "Palabra.h"
 using namespace std;
 class Matriz {
    private:
       int filas;
 	  int columnas;
 	  char **m;
+	  const int sumaF[8]={-1,-1,0,1,1,1,0,-1};
+      const int sumaC[8]={0,-1,-1,-1,0,1,1,1};
 	  
 	  void _init(int,int,char);
 	  void _liberar();
@@ -16,8 +19,9 @@ class Matriz {
       Matriz(); // Constructor por omision
 	  Matriz(int,int); // Constructor con parametros
 	  Matriz(const Matriz &); // Constructor de copia
-	  ~Matriz();
+	 // ~Matriz();
 	  void asignar(const Matriz &);
+	  void guardoPalabra(char * );
 	  int esPosicionValida(int,int);
 	  int posicionVacia(int,int); 
 	  void quitarValor(int,int); 
@@ -26,5 +30,8 @@ class Matriz {
 	  void imprimir( ostream & );
 	  void rellenoSopa();
 	  char letraAleatoria(int);
+   	  void ponerPalabra(int, int, int, Palabra); 
+      int verificar(int, int, int, Palabra); 
+      void ponerLetras(int, int, int, Palabra);
 };
 #endif
